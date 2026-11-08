@@ -1,0 +1,988 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Founders School | Building a Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap">
+<style>
+/* Layout: a compact two-tab strategy tool. 30/60/90 = three stable phase columns, one shared detail panel beneath, example week below. Approach = principles grid. */
+:root{
+  --paper:#F3F2EC; --surface:#FBFAF6; --sunk:#ECEAE2;
+  --ink:#1C1D26; --ink-2:#474A57; --ink-3:#757887;
+  --line:#DCD9CF; --line-2:#C6C2B6;
+  --brand:#0000EE; --brand-ink:#FFFFFF;
+  --grp:#0000EE; --grp-soft:#E2E5FF; --ind:#17694F; --ind-soft:#DCEFE6; --dwn:#8A5A12; --dwn-soft:#F5E8D2;
+  --accent:#141B4D; --accent-ink:#FFFFFF; --accent-soft:#E3E5F2;
+  --slate:#3F57CF; --slate-soft:#E6EBFA;
+  --brass:#14146E; --brass-soft:#E4E4F2;
+  --sand:#9C8B68; --sand-soft:#EEEADF;
+  --rust:#9A4A34; --rust-soft:#F3E3DC;
+  --amber:#93670E; --amber-soft:#F4E9D0;
+  --shadow:0 1px 2px rgba(30,35,33,.05),0 8px 22px -14px rgba(30,35,33,.2);
+  --tabshadow:0 1px 2px rgba(30,35,33,.1);
+  --f-display:"Young Serif",Georgia,"Times New Roman",serif;
+  --f-body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111219; --surface:#181A22; --sunk:#0D0E14;
+    --ink:#E6E7EE; --ink-2:#B5B8C6; --ink-3:#878A99;
+    --line:#2A2D3A; --line-2:#3A3E4E;
+    --brand:#8F8FFF; --brand-ink:#0A0A2E;
+    --grp:#9AA3FF; --grp-soft:#1E2250; --ind:#7FD1AE; --ind-soft:#15302A; --dwn:#E2B36C; --dwn-soft:#33281A;
+    --accent:#B9C0EC; --accent-ink:#0B1030; --accent-soft:#1C2140;
+    --slate:#82A6FF; --slate-soft:#1A2440;
+    --brass:#BABDEB; --brass-soft:#23253A;
+    --sand:#C2B391; --sand-soft:#25221B;
+    --rust:#E39C86; --rust-soft:#33221C;
+    --amber:#E2BB60; --amber-soft:#2D2614;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 22px -14px rgba(0,0,0,.6);
+    --tabshadow:0 1px 2px rgba(0,0,0,.4);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111219; --surface:#181A22; --sunk:#0D0E14;
+  --ink:#E6E7EE; --ink-2:#B5B8C6; --ink-3:#878A99;
+  --line:#2A2D3A; --line-2:#3A3E4E;
+  --brand:#8F8FFF; --brand-ink:#0A0A2E;
+  --grp:#9AA3FF; --grp-soft:#1E2250; --ind:#7FD1AE; --ind-soft:#15302A; --dwn:#E2B36C; --dwn-soft:#33281A;
+  --accent:#B9C0EC; --accent-ink:#0B1030; --accent-soft:#1C2140;
+  --slate:#82A6FF; --slate-soft:#1A2440;
+  --brass:#BABDEB; --brass-soft:#23253A;
+  --sand:#C2B391; --sand-soft:#25221B;
+  --rust:#E39C86; --rust-soft:#33221C;
+  --amber:#E2BB60; --amber-soft:#2D2614;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 8px 22px -14px rgba(0,0,0,.6);
+  --tabshadow:0 1px 2px rgba(0,0,0,.4);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+h1,h2,h3,h4,p,ul,ol,dl{margin:0;padding:0}
+ul,ol{list-style:none}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.label{font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.muted{color:var(--ink-3)}
+
+/* Header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;min-height:58px}
+.brand{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;text-align:left;min-width:0}
+.brand-mark{width:30px;height:30px;border-radius:7px;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center;font-family:var(--f-display);font-size:13px;flex:none}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand-name{font-weight:650;font-size:14px}
+.brand-sub{font-size:12px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabs{display:inline-flex;background:var(--sunk);border-radius:999px;padding:3px;gap:2px}
+.tab{background:none;border:0;padding:7px 18px;border-radius:999px;font-weight:600;font-size:14px;color:var(--ink-2);white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.on{background:var(--surface);color:var(--accent);box-shadow:var(--tabshadow)}
+.actions{display:flex;justify-content:flex-end;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:7px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);padding:6px 13px;font-weight:600;font-size:13.5px;white-space:nowrap}
+.btn:hover{border-color:var(--ink-3)}
+.btn.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.danger{color:var(--rust);border-color:var(--rust)}
+.btn.small{padding:4px 10px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:default}
+.link{background:none;border:0;padding:0;color:var(--accent);font-weight:600;font-size:13.5px;text-decoration:underline;text-underline-offset:3px}
+.link.danger{color:var(--rust)}
+
+/* Export drawer */
+.drawer{background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+.drawer-in{padding-block:16px 18px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px}
+.drawer-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.out{font-family:var(--f-mono);font-size:12.5px;line-height:1.45;background:var(--sunk)}
+.msg{font-size:13px;font-weight:600;color:var(--accent)}
+.msg.err{color:var(--rust)}
+.fine{font-size:13px;color:var(--ink-3)}
+.confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--rust);background:var(--rust-soft);border-radius:8px;padding:6px 10px}
+
+select,input[type=text],textarea{background:var(--surface);border:1px solid var(--line-2);border-radius:7px;padding:6px 9px;font-size:13.5px;max-width:100%}
+textarea{width:100%;resize:vertical;line-height:1.4}
+select:focus,input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent)}
+input[type=file]{font-size:12.5px;max-width:100%}
+
+/* Page */
+.page{padding-block:22px 64px;display:flex;flex-direction:column;gap:18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px}
+.panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px 14px;flex-wrap:wrap;margin-bottom:12px}
+
+/* Approach */
+.ap-top{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:stretch}
+.bal{display:flex;flex-direction:column;gap:3px;padding:11px 0;border-top:1px solid var(--line)}
+.bal:first-of-type{border-top:0;padding-top:2px}
+.bal-name{font-family:var(--f-display);font-weight:400;font-size:18px;line-height:1.25;overflow-wrap:anywhere;color:var(--ink)}
+.bal-name i{font-style:normal;color:var(--accent);font-family:var(--f-body);font-size:15px}
+.bal p{font-size:14px;color:var(--ink-2);max-width:70ch}
+.feel{display:flex;flex-direction:column;background:var(--accent-soft);border-radius:var(--r);padding:16px 20px}
+.feel-item{padding:11px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+.feel-item:first-of-type{border-top:0;padding-top:8px}
+.feel-item h3{font-family:var(--f-display);font-weight:400;font-size:20px;color:var(--ink)}
+.feel-item p{font-size:14px;color:var(--ink-2)}
+.found{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.found-col{display:flex;flex-direction:column;gap:6px}
+.found-col > .label{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.found-list li{display:flex;flex-direction:column;padding:7px 0;border-top:1px solid var(--line);font-size:14px}
+.found-list li:first-child{border-top:0}
+.found-list b{font-weight:600}
+.found-list span{color:var(--ink-3);font-size:13px}
+.kind{font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;border-radius:4px;padding:1px 5px;border:1px solid}
+.kind.rule{color:var(--slate);border-color:var(--slate)}
+.kind.prop{color:var(--accent);border-color:var(--accent)}
+.measures-wrap{display:flex;flex-direction:column;gap:10px}
+.measures{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;align-items:stretch}
+.measure{display:flex;flex-direction:column;min-width:0}
+@supports (grid-template-rows: subgrid){.measure{display:grid;grid-template-rows:subgrid;grid-row:span 2;row-gap:0}}
+.measure-btn{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);text-align:left;padding:13px 14px 12px;display:flex;flex-direction:column;gap:5px;height:100%;width:100%}
+.measure-btn:hover{border-color:var(--line-2)}
+.measure.open .measure-btn{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.measure h3{font-family:var(--f-display);font-weight:400;font-size:18px;line-height:1.15;color:var(--ink)}
+.measure p{font-size:13.5px;color:var(--ink-2)}
+.measure .more{margin-top:auto;padding-top:4px;font-size:12.5px;font-weight:600;color:var(--accent)}
+.measure-body{align-self:start;background:var(--surface);border:1px solid var(--line);border-top:0;border-radius:0 0 var(--r) var(--r);padding:10px 14px 14px;display:flex;flex-direction:column;gap:6px}
+.measure-body.closed{visibility:hidden}
+.dash li{position:relative;padding-left:13px;font-size:13.5px;color:var(--ink-2);line-height:1.4}
+.dash li + li{margin-top:5px}
+.dash li::before{content:"";position:absolute;left:0;top:.65em;width:6px;height:1.5px;background:var(--ink-3)}
+.caveat{font-size:12.5px;color:var(--ink-3)}
+
+/* Roadmap */
+.legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 14px;font-size:13px;color:var(--ink-2);align-items:start}
+.legend .who{display:flex;gap:7px;align-items:baseline;min-width:0}
+.legend .who .dot{transform:translateY(-1px)}
+.legend .muted{grid-column:1 / -1}
+.legend b{font-weight:650}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.d-lead{background:var(--brand)} .d-karsten{background:var(--slate)} .d-aman{background:var(--brass)}
+.discuss-bar{font-size:13px;color:var(--ink-2);background:var(--amber-soft);border-radius:8px;padding:8px 12px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.discuss-bar b{color:var(--amber)}
+.open-items{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.oi{border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600;display:inline-flex;gap:6px;align-items:center}
+.oi:hover{border-color:var(--ink-3)}
+.rail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:-6px}
+.rail span{height:4px;border-radius:999px}
+.r1{background:var(--brand)} .r2{background:var(--slate)} .r3{background:var(--brass)}
+.phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;min-width:0;order:var(--o)}
+.phase-head{padding:14px 16px 12px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+.phase-head .days{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+.p1 .days{color:var(--brand)} .p2 .days{color:var(--slate)} .p3 .days{color:var(--brass)}
+.phase-head h2{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.1;color:var(--ink)}
+.phase-head p{font-size:13.5px;color:var(--ink-2)}
+.phase-body{padding:10px;display:flex;flex-direction:column;gap:7px}
+.pcard{width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;transition:border-color .12s,background .12s}
+.pcard:hover{border-color:var(--ink-3)}
+.pcard.on{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.pcard-label{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pcard-title{font-weight:650;font-size:14.5px;line-height:1.3}
+.pcard:hover .pcard-title{color:var(--accent)}
+.pcard-sum{font-size:13px;color:var(--ink-3);line-height:1.35}
+.pcard-foot{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;margin-top:4px}
+.people{display:inline-flex;flex-wrap:wrap;gap:2px 9px;font-size:12px;color:var(--ink-2);font-weight:500}
+.person{display:inline-flex;gap:5px;align-items:center;white-space:nowrap}
+.tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;padding:1px 6px;border-radius:4px;background:var(--accent);color:var(--accent-ink);font-weight:500}
+.st{font-size:11px;font-weight:650;padding:1px 7px;border-radius:999px;white-space:nowrap}
+.st-discuss{background:var(--amber-soft);color:var(--amber)}
+.st-aligned{background:var(--accent-soft);color:var(--accent)}
+.st-revisit{background:var(--rust-soft);color:var(--rust)}
+.pcard.on .st-aligned{background:var(--surface)}
+.has-note{font-size:11px;color:var(--ink-3);font-weight:600}
+.outcomes{margin:auto 10px 10px;background:var(--sunk);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:7px}
+.checks li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:6px;font-size:13.5px;line-height:1.35}
+.checks li + li{margin-top:4px}
+.checks li::before{content:"";width:9px;height:5px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg);margin-top:5px}
+
+@media (min-width: 861px){
+  @supports (grid-template-rows: subgrid){
+    .phase{display:grid;grid-template-rows:subgrid;grid-row:span 3;row-gap:0}
+    .phase .outcomes{margin:0 10px 10px;align-self:start}
+  }
+}
+
+/* Shared detail panel */
+.detail{grid-column:1 / -1;order:99;background:var(--surface);border:1px solid var(--accent);border-radius:var(--r);box-shadow:var(--shadow);scroll-margin-top:90px;animation:rise .18s ease-out;min-width:0}
+@keyframes rise{from{opacity:.35;transform:translateY(4px)}to{opacity:1;transform:none}}
+.detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:14px 18px 12px;border-bottom:1px solid var(--line)}
+.detail-head > div{display:flex;flex-direction:column;gap:3px;min-width:0}
+.detail-head h3{font-family:var(--f-display);font-weight:400;font-size:22px;color:var(--ink);line-height:1.15;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.detail-body{padding:16px 18px 18px;display:grid;gap:18px}
+.detail-body.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.three .sub + .sub{border-left:1px solid var(--line);padding-left:18px}
+.sub{display:flex;flex-direction:column;gap:10px;min-width:0}
+.sub-title{font-weight:650;font-size:15.5px;line-height:1.3;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.sub.wide{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px 28px;align-items:start}
+.sub.wide > .full{grid-column:1 / -1}
+.who-line{font-size:13.5px;color:var(--ink-2);display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.who-line .people{font-size:13px}
+.dl{display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:7px 10px;font-size:13.5px}
+.dl dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);padding-top:2px}
+.dl dd{margin:0;color:var(--ink-2)}
+.acts li{position:relative;padding-left:13px;line-height:1.4;font-size:13.5px}
+.acts li + li{margin-top:5px}
+.acts li::before{content:"";position:absolute;left:0;top:.55em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+.note-view{font-size:13.5px;background:var(--amber-soft);border-radius:7px;padding:7px 10px;white-space:pre-wrap;overflow-wrap:anywhere}
+.edit{display:flex;flex-direction:column;gap:8px;background:var(--sunk);border-radius:8px;padding:10px}
+.edit-row{display:flex;flex-wrap:wrap;gap:8px 16px}
+.ctl{display:flex;flex-direction:column;gap:4px;min-width:0}
+.ctl-label{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.seg{display:inline-flex;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line-2);border-radius:7px;padding:2px;gap:2px;align-self:flex-start}
+.sc{border:0;background:none;border-radius:5px;padding:4px 8px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+.sc:hover{background:var(--sunk)}
+.sc.on{background:var(--ink);color:var(--paper)}
+.sc.on.s-discuss{background:var(--amber);color:var(--paper)}
+.sc.on.s-aligned{background:var(--accent);color:var(--accent-ink)}
+.sc.on.s-revisit{background:var(--rust);color:var(--paper)}
+.sc:disabled{opacity:.4;cursor:default}
+
+/* Week */
+.week-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.day{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:5px;text-align:left;min-width:0;min-height:128px}
+.day:hover{border-color:var(--ink-3)}
+.day.on{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.day-name{font-family:var(--f-mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.day.on .day-name{color:var(--accent)}
+.blk{border-radius:5px;padding:4px 7px;font-size:12.5px;line-height:1.25;font-weight:600}
+.blk.group{background:var(--grp-soft);color:var(--grp)}
+.blk.individual{background:var(--ind-soft);color:var(--ind)}
+.blk.downtime{background:var(--dwn-soft);color:var(--dwn)}
+.blk.anchor{box-shadow:inset 0 0 0 1.5px var(--grp)}
+.blk .opt{font-weight:500;opacity:.75}
+.wk-legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--ink-2);align-items:center}
+.sq{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-1px;flex:none}
+.sq.group{background:var(--grp-soft);border:1.5px solid var(--grp)}
+.sq.individual{background:var(--ind-soft);border:1.5px solid var(--ind)}
+.sq.downtime{background:var(--dwn-soft);border:1.5px solid var(--dwn)}
+.day-detail{margin-top:12px;border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.dd-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px 14px;flex-wrap:wrap}
+.dd-head h4{font-family:var(--f-display);font-weight:400;font-size:19px}
+.acts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px 22px}
+.act-row{display:grid;grid-template-columns:14px minmax(0,1fr);gap:8px;align-items:start}
+.act-row .sq{margin-top:4px}
+.act-row b{font-weight:650;font-size:14px}
+.act-row p{font-size:13px;color:var(--ink-2)}
+.mini{font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);margin-left:6px;font-weight:500}
+.we-list{display:flex;flex-direction:column;gap:8px}
+.we-item{display:flex;flex-direction:column;gap:6px;background:var(--sunk);border-radius:8px;padding:8px}
+.we-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:6px;align-items:center}
+.we-row input[type=text]{width:100%}
+.chk{display:inline-flex;gap:5px;align-items:center;font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+
+.qs li{display:flex;flex-direction:column;gap:5px;padding:9px 0;border-top:1px solid var(--line);font-size:14px}
+.qs li:first-child{border-top:0;padding-top:0}
+.qs .q{display:grid;grid-template-columns:18px minmax(0,1fr);gap:4px;font-weight:600;line-height:1.35}
+.qs .q span{font-family:var(--f-display);color:var(--brass);font-weight:400}
+.qs .ans{font-size:13px;color:var(--ink-2);margin-left:22px;white-space:pre-wrap}
+.qs textarea{margin-left:22px;width:calc(100% - 22px)}
+.qs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
+.qs-grid li:nth-child(2){border-top:0;padding-top:0}
+details.collapse summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+details.collapse summary::-webkit-details-marker{display:none}
+details.collapse summary .chev{font-size:12.5px;font-weight:600;color:var(--accent)}
+details.collapse[open] summary{margin-bottom:12px}
+details.collapse[open] .chev-c{display:none}
+details.collapse:not([open]) .chev-o{display:none}
+
+@media (max-width: 1000px){
+  .measures{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .detail-body.three{grid-template-columns:minmax(0,1fr)}
+  .three .sub + .sub{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:16px}
+}
+@media (max-width: 860px){
+  .top-in{grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;padding-block:8px}
+  .tabs{grid-column:1 / -1;grid-row:2;justify-self:center}
+  .ap-top,.found,.drawer-in,.qs-grid{grid-template-columns:minmax(0,1fr)}
+  .qs-grid li:nth-child(2){border-top:1px solid var(--line);padding-top:9px}
+  .phases{grid-template-columns:minmax(0,1fr)}
+  .legend{grid-template-columns:minmax(0,1fr)}
+  .detail{order:var(--mo)}
+  .rail{display:none}
+  .sub.wide{grid-template-columns:minmax(0,1fr)}
+  .week-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width: 560px){
+  .brand-sub{display:none}
+  .measures{grid-template-columns:minmax(0,1fr)}
+  .measure-body.closed{display:none}
+  .week-grid{grid-template-columns:minmax(0,1fr)}
+  .day{min-height:0;display:grid;grid-template-columns:38px minmax(0,1fr);gap:4px 8px}
+  .day .day-name{grid-row:1 / span 9;padding-top:3px}
+  .day > :not(.day-name){grid-column:2}
+  .we-row{grid-template-columns:minmax(0,1fr) auto}
+  .btn{padding:6px 10px}
+  .detail-head,.detail-body{padding-left:14px;padding-right:14px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  body::before,.top,.drawer,.discuss-bar,.edit{display:none!important}
+  .phases{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+(function(){
+"use strict";
+const { useState, useEffect, useRef, useContext, createContext } = React;
+const html = htm.bind(React.createElement);
+const Ctx = createContext(null);
+const useCtx = () => useContext(Ctx);
+
+const STORE_KEY = "fs-student-life-v3";
+const OLD_KEY = "fs-student-life-v2";
+const APP_ID = "founders-student-life";
+
+/* ================= Content ================= */
+
+const BALANCES = [
+  ["Structure", "Flexibility", "Clear house rules, chores, and weekly routines, with room for downtime, last-minute plans, and personal choice."],
+  ["Individual", "Community", "Make time for each boy's interests and individual connection, alongside dinners, outings, and shared traditions."],
+  ["Fun", "Responsibility", "Having fun and building genuine trust through shared activities, while maintaining clear expectations, fair boundaries, and adult authority."],
+  ["Ambition", "Well-rounded life", "Make room beyond school and entrepreneurship for sports, arts, hobbies, friendships, exploring the city, and rest."],
+  ["Leadership", "Collaboration", "Take responsibility for day-to-day residential life while inviting student input and planning closely with Karsten and Aman."]
+];
+
+const FEEL = [
+  ["A home", "A welcoming shared space where boys can cook, talk, play games, listen to music, or simply hang out."],
+  ["A team", "The boys don't have to be best friends. What matters is mutual respect, feeling part of the group, and looking out for one another."],
+  ["A trusted adult", "An approachable coach and mentor who plays sports, cooks, explores the city, and spends time with the boys while maintaining clear adult authority."]
+];
+
+const FOUNDATIONS = {
+  rules: [
+    ["Supervision and safety", "Understand supervision requirements and put student safety first."],
+    ["Handbook rules, curfew, and lights out", "Follow the rules for guests, phones, and conduct."],
+    ["Transportation, buddy system, and staffing coverage", "Include backup coverage, time off, and supervision across residences."],
+    ["Emergency procedures and escalation", "Know what to do in emergencies and how to report concerns."]
+  ],
+  practices: [
+    ["Household expectations and accountability", "Set clear expectations for dishes, pans, trash, chores, and shared spaces."],
+    ["Individual well-being and regular check-ins", "Notice when something seems off and follow school procedures when extra support is needed."],
+    ["Parent communication and contact with home", "Keep families informed through approved channels and encourage regular check-ins with home."],
+    ["Collaboration with Karsten and Aman", "Plan joint activities, keep expectations consistent, and stay on the same page."]
+  ]
+};
+
+const MEASURES = [
+  { name: "Student belonging", line: "Students feel included, connected to the group, and comfortable at home.",
+    how: ["One-on-one conversations", "Everyday interactions", "Informal feedback", "A short student survey in Days 61–90"] },
+  { name: "Engagement", line: "Students take part in meaningful individual and group activities.",
+    how: ["Extracurricular participation", "Group activity participation", "Whether students choose to spend time together", "Student feedback"], caveat: "A fuller calendar doesn't necessarily mean students are more engaged." },
+  { name: "Student well-being", line: "Students feel supported, and concerns are noticed and addressed appropriately.",
+    how: ["Individual check-ins", "Changes in each boy's usual behavior", "Follow-up through school procedures"], caveat: "Private student information stays in school-approved systems." },
+  { name: "Parent confidence", line: "Parents know what's going on and feel confident their children are well cared for.",
+    how: ["Parent feedback", "Consistent, school-approved updates", "Timely individual follow-up"] },
+  { name: "Operational consistency", line: "House routines, schedules, communication, and responsibilities run smoothly.",
+    how: ["Staff check-ins", "Recurring house or scheduling problems", "Less last-minute scrambling"] }
+];
+
+const PEOPLE = ["lead", "karsten", "aman"];
+const OWNERS = {
+  lead: { label: "Oliver", desc: "boys’ daily routines, activities, and residential life", rel: "coordinate with Oliver" },
+  karsten: { label: "Karsten", desc: "shared activities, resources, and consistent expectations across residences", rel: "coordinate with Karsten" },
+  aman: { label: "Aman", desc: "school policies, priorities, budgets, approvals, staffing, and supervision", rel: "confirm with Aman" }
+};
+const STATUSES = { proposed: "Proposed", discuss: "Discuss", aligned: "Aligned", revisit: "Revisit" };
+
+const W1 = [
+  { id: "w1-safety", owner: "lead", with: ["aman", "karsten"], tag: "Day 1", title: "Understand rules, safety, and coverage",
+    actions: ["Meet with Aman and Karsten to understand responsibilities and agree on early priorities.", "Review the handbook’s rules for curfew, lights out, guests, phones, supervision, and conduct.", "Learn emergency procedures, how to report incidents, and when to seek help for a student.", "Confirm school pickup, transportation, buddy-system rules, and who covers when an RA is off or unavailable.", "Confirm where the boys live and how supervision works across residences."],
+    why: "Before planning new activities, be clear on safety, supervision, and coverage. School rules come first.", needs: "Access to the handbook and time with Aman and Karsten at the start.",
+    outcome: "A clear understanding of rules, supervision, reporting, and coverage from Day 1." },
+  { id: "w1-rel", owner: "lead", with: [], title: "Get to know each boy",
+    actions: ["Learn each boy’s schedule, interests, other commitments, and how much energy he has after school.", "Spend time with each boy individually: grabbing food, walking somewhere together, running errands, or just talking.", "Be present in the common room, getting to know the boys and how they interact without forcing group time.", "Get to know the boys through shared experiences: trying new restaurants, playing basketball, grocery shopping, or exploring NYC together."],
+    why: "Getting to know each boy makes it easier to notice when he seems homesick, stressed, withdrawn, or unlike himself.",
+    outcome: "An initial connection with every boy and a better sense of how they get along as a group." },
+  { id: "w1-house", owner: "lead", with: [], title: "Set household expectations",
+    actions: ["Set clear expectations for dishes, washing pans, trash, and shared spaces.", "Keep chores fair and manageable, in line with school rules.", "Give everyone a part in keeping the residence clean and comfortable."],
+    why: "Good habits are easier to establish early than to introduce later.",
+    outcome: "Clear household expectations from the start." }
+];
+const W2 = [
+  { id: "w2-dinners", owner: "lead", with: ["karsten"], title: "Start two weekly family dinners",
+    actions: ["Begin a weekly dinner with the boys, taking turns planning and cooking in small teams.", "Plan a second weekly dinner with Karsten that brings the boys and girls together.", "Let students help choose the meals and plan the dinners."],
+    why: "Keep the arrangement flexible. One dinner could be boys-only and one combined, or both could include the girls if that works better. Decide with Karsten and Aman.",
+    needs: "A day that works with Karsten and the girls’ schedules.",
+    outcome: "Two weekly dinners happening where schedules allow." },
+  { id: "w2-extra", owner: "lead", with: ["karsten", "aman"], tag: "Priority", title: "Explore extracurricular options",
+    actions: ["Ask each boy what he enjoys, misses from home, or would like to try.", "Find nearby sports teams, arts and music classes, theater programs, and clubs.", "Check ages, schedules, costs, transportation, and required permissions."],
+    why: "Starting in Week 2 gives enough time to find good options for every boy by Day 30.", needs: "Confirm the activity budget and approvals with Aman; work on the shared activity list with Karsten.",
+    outcome: "A clearer picture of each boy’s interests and a growing list of activities to consider." },
+  { id: "w2-routines", owner: "lead", with: ["aman"], title: "Set up chores, schedules, and family contact",
+    actions: ["Start a simple chore rotation and make meal cleanup everyone’s responsibility.", "Confirm whether grocery shopping is individual or shared.", "Set up a shared calendar for student commitments, activities, and RA coverage.", "Start parent updates through school-approved channels and help the boys stay in touch with home.", "Plan an easy weekend outing without filling everyone's free time."],
+    needs: "Confirm how and when the school expects parents to be updated.",
+    outcome: "Chores, scheduling, and parent updates beginning to run smoothly." }
+];
+const W34 = [
+  { id: "w34-extra", owner: "lead", with: ["karsten"], tag: "Day 30 goal", title: "Extracurricular options for every boy",
+    actions: ["Find a few realistic activity options for every boy.", "Help with sign-ups and getting started wherever possible.", "Start a shared list with Karsten of local programs reviewed for suitability."],
+    why: "By Day 30, every boy should have suitable options identified. Actual participation may take longer depending on availability, schedules, and approvals.",
+    outcome: "Each boy has suitable activities to choose from, with participation starting where possible." },
+  { id: "w34-rhythm", owner: "lead", with: [], title: "Build a regular weekly routine",
+    actions: ["Keep both dinners going and adjust the cooking teams as needed.", "Plan one weekend outing, with room for smaller, last-minute plans.", "Leave time to relax and respect students’ other commitments.", "Start a short weekly house check-in to look ahead and hear ideas."],
+    outcome: "A predictable week with room for downtime and spontaneous plans." },
+  { id: "w34-review", owner: "lead", with: ["aman", "karsten"], title: "Check in and adjust",
+    actions: ["Plan joint activities with Karsten and share useful resources.", "Keep spending one-on-one time with each boy and paying attention to how he's doing.", "Discuss what's working, what needs attention, and what to focus on next with Aman.", "Decide what to change or build on during Days 31–60."],
+    outcome: "Agreement on what's working and the priorities for the next month." }
+];
+
+const PHASES = [
+  { id: "p1", n: 1, days: "Days 1–30", end: 30, name: "Establish", objective: "Become familiar with existing routines and processes, get to know each boy, and establish clear household expectations.",
+    cards: [
+      { kind: "group", id: "g-w1", label: "Week 1", tag: "Day 1", title: "Foundation & relationships", summary: "School rules, safety, individual relationships, and house expectations.", items: W1 },
+      { kind: "group", id: "g-w2", label: "Week 2", tag: "Extracurriculars begin", title: "Community & opportunities", summary: "Family dinners, finding outside activities, and basic routines.", items: W2 },
+      { kind: "group", id: "g-w34", label: "Weeks 3–4", tag: "Day 30 goal", title: "Settle into a routine", summary: "Outside activities, weekend plans, and a more regular routine.", items: W34 }
+    ],
+    outcomes: ["Household expectations are clear and routines are in place.", "Relationships with every boy are beginning to take shape.", "Two weekly family dinners are happening where schedules allow.", "Every boy has suitable extracurricular options, with sign-ups or participation starting where possible.", "Weekend outings and smaller activities are beginning to take shape.", "Shared scheduling, parent updates, and team communication are in place."] },
+  { id: "p2", n: 2, days: "Days 31–60", end: 60, name: "Build", objective: "Build a reliable weekly routine and give students a bigger part in shaping it.",
+    cards: [
+      { kind: "item", id: "p2-extra", owner: "lead", with: ["karsten"], title: "Individual extracurriculars", summary: "Helping boys get started and keeping a useful list of local activities.",
+        actions: ["Help with sign-ups, transportation, and required permissions.", "Keep looking for activities that fit each boy's interests and schedule.", "Add useful local programs to the shared list with Karsten.", "Help each boy find something worthwhile; they don't all need to do the same thing."],
+        outcome: "Each boy is involved in an activity or has a clear next step." },
+      { kind: "item", id: "p2-programming", owner: "lead", with: ["karsten", "aman"], title: "Regular weekly activities", summary: "Regular dinners and activities, with enough free time.",
+        actions: ["Keep the two family dinners on the weekly calendar.", "Plan one weekend outing where possible, with room for last-minute ideas.", "Consider occasional day trips beyond Manhattan.", "Work around commitments like Saturday acting.", "Let students choose whether to join most recreational outings."],
+        needs: "Coordinate dates with Karsten, and confirm approval and RA coverage for trips outside Manhattan.", outcome: "A regular weekly schedule with room to change plans." },
+      { kind: "item", id: "p2-ownership", owner: "lead", with: [], title: "Student responsibility", summary: "Rotating cooking, monthly Student's Pick outings, and shared household responsibilities.",
+        actions: ["Have students take turns planning and cooking family dinners.", "Introduce Student's Pick: each month, a different boy chooses an NYC experience and helps plan it, with Oliver coordinating logistics and approvals.", "Give students chances to introduce the group to things they enjoy.", "Make sure everyone takes responsibility for chores and shared spaces."],
+        why: "Students help shape meals and activities, while house rules, supervision, and safety decisions remain adult responsibilities.",
+        outcome: "Students taking responsibility for cooking, shared spaces, and helping plan group experiences." },
+      { kind: "item", id: "p2-coord", owner: "lead", with: ["karsten"], title: "Community & coordination", summary: "More activities together and smoother day-to-day planning with Karsten.",
+        actions: ["Build connections through shared experiences, everyday time together, and traditions the boys enjoy.", "Plan activities for both residences with Karsten.", "Keep schedules, RA coverage, and transportation organized.", "Share important student observations with the appropriate school staff.", "Improve scheduling and communication as you learn what works."],
+        outcome: "Stronger connections between the residences and fewer scheduling surprises." }
+    ],
+    outcomes: ["Regular dinners, extracurriculars, and weekend plans that leave room for downtime.", "Each boy trying, participating in, or taking clear next steps toward an extracurricular that interests him.", "Family dinners established and the first Student's Pick outing held or scheduled.", "Cooking rotations, student-chosen activities, and shared household responsibilities underway.", "A regular planning routine with Karsten and a shared calendar that stays current."] },
+  { id: "p3", n: 3, days: "Days 61–90", end: 90, name: "Refine", objective: "Find out what's working, make changes, and write down what future staff will need.",
+    cards: [
+      { kind: "item", id: "p3-eval", owner: "lead", with: ["karsten", "aman"], title: "Review", summary: "Hear from students, families, and staff about how residential life is going.",
+        actions: ["Check in with each boy about what he's enjoying, what isn't working, and what he'd like to change.", "Ask parents, Karsten, and Aman what's working well and where they see room for improvement.", "Review the five measures: belonging, engagement, well-being, parent confidence, and how smoothly the residence runs.", "Consider a short student survey.", "Notice anyone who seems left out or needs more support."],
+        outcome: "A clearer understanding of what students and families value and what needs to improve." },
+      { kind: "item", id: "p3-improve", owner: "lead", with: [], title: "Adjust", summary: "Adapt activities and routines to students’ interests, commitments, and energy.",
+        actions: ["Adjust the weekly routine based on what students join, enjoy, and have energy for.", "Keep traditions students enjoy; change or drop ones that aren't working.", "Fill in what's missing without packing the calendar.", "Give students more say in planning activities."],
+        outcome: "A weekly routine that works for the boys and leaves room to breathe." },
+      { kind: "item", id: "p3-repeat", owner: "lead", with: ["karsten", "aman"], title: "Document what works", summary: "A practical playbook, planning templates, and a useful directory of local activities.",
+        actions: ["Write down the routines that work so another RA could follow them.", "Keep the list of local activities and providers up to date.", "Make easy-to-use templates for schedules, outings, cooking teams, and chores.", "Work with Karsten to decide which routines should be shared by both residences.", "Review the first 90 days with Aman and agree on what to focus on next."],
+        why: "Keep private student information in school-approved secure systems, not in planning templates.",
+        outcome: "Simple, useful routines that future RAs can follow as the program grows." }
+    ],
+    outcomes: ["Boys who feel connected, comfortable at home, and supported when they need help.", "Chores, shared-space expectations, and household routines that run with fewer reminders.", "A weekly activity calendar refined around students' interests, commitments, and need for downtime.", "Individual activities and house traditions that have been refined based on what the boys actually enjoy.", "Feedback from students, parents, and staff showing what's working and what still needs attention.", "A usable residential playbook, an updated extracurricular directory, and simple weekly planning templates."] }
+];
+
+const ALL_ITEMS = [];
+const CARD_BY = {};
+const CARD_OF_ITEM = {};
+PHASES.forEach((p, pi) => p.cards.forEach(c => {
+  CARD_BY[c.id] = { card: c, phase: p, pi };
+  const items = c.kind === "group" ? c.items : [c];
+  items.forEach(i => { ALL_ITEMS.push(i); CARD_OF_ITEM[i.id] = c.id; });
+}));
+
+const QUESTIONS = [
+  { id: "q1", text: "What would a successful first month look like?" },
+  { id: "q2", text: "What routines and systems are already in place?" },
+  { id: "q3", text: "How should Oliver and Karsten divide responsibilities?" },
+  { id: "q4", text: "What is the activity budget, and what needs approval?" },
+  { id: "q5", text: "How should supervision and RA coverage work across the residences?" },
+  { id: "q6", text: "Which routines should stay consistent as more students and staff join?" }
+];
+
+const TYPES = { group: "Group", individual: "Individual", downtime: "Downtime" };
+const DAYS = [["mon", "Monday", "Mon"], ["tue", "Tuesday", "Tue"], ["wed", "Wednesday", "Wed"], ["thu", "Thursday", "Thu"], ["fri", "Friday", "Fri"], ["sat", "Saturday", "Sat"], ["sun", "Sunday", "Sun"]];
+const DAY_IDS = DAYS.map(d => d[0]);
+const DAY_NAME = Object.fromEntries(DAYS.map(d => [d[0], d[1]]));
+const WEEKEND = ["sat", "sun"];
+const DEFAULT_DINNERS = { boys: "sun", combined: "tue" };
+const DINNERS = {
+  boys: { title: "Boys' dinner", detail: "A family dinner planned and cooked by a rotating team of boys. Usually boys-only, but it could include the girls if that works better. Everyone helps clean up." },
+  combined: { title: "Combined dinner", detail: "Dinner with the boys and girls, planned with Karsten. The day depends on everyone's schedules." }
+};
+const DEFAULT_WEEK = [
+  { id: "mon-1", day: "mon", type: "individual", title: "Extracurriculars", detail: "Sports, music, theater, clubs, or other activities each boy chooses." },
+  { id: "mon-2", day: "mon", type: "downtime", title: "Common-room time", detail: "Time to relax in the common room, together or doing different things." },
+  { id: "mon-3", day: "mon", type: "group", title: "Week prep", detail: "Briefly look over what's coming up and who needs to be where." },
+  { id: "wed-1", day: "wed", type: "individual", title: "Own activities", detail: "Time for each boy's own activities and interests." },
+  { id: "wed-2", day: "wed", type: "group", title: "Small group", optional: true, detail: "A walk, game, or food run with whoever wants to join." },
+  { id: "wed-3", day: "wed", type: "downtime", title: "Downtime", detail: "Free time to relax, read, or call home." },
+  { id: "thu-1", day: "thu", type: "individual", title: "Own commitments", detail: "Individual activities and personal plans." },
+  { id: "thu-2", day: "thu", type: "downtime", title: "Spontaneous plan", detail: "Decide on the day: cook, play games, go out briefly, or have a quiet night." },
+  { id: "fri-1", day: "fri", type: "group", title: "Social night", optional: true, detail: "Something fun together, or a relaxed night at home. Joining is optional." },
+  { id: "sat-1", day: "sat", type: "group", title: "Weekend outing", detail: "Explore a neighborhood, see a show or game, visit a museum, or do something active with whoever is free." },
+  { id: "sat-2", day: "sat", type: "individual", title: "Own commitments", detail: "Some boys have Saturday commitments, such as acting, so group plans should work around them." },
+  { id: "sun-1", day: "sun", type: "group", title: "Weekly chores", detail: "Clean shared spaces and get chores ready for the new week." },
+  { id: "sun-2", day: "sun", type: "individual", title: "Check in with home", detail: "Time for the boys to call or message family." },
+  { id: "sun-3", day: "sun", type: "downtime", title: "Relax and prepare", detail: "Unwind and get ready for the week ahead." }
+];
+
+/* ================= State ================= */
+
+const uid = () => Math.random().toString(36).slice(2, 8) + Date.now().toString(36).slice(-4);
+const clone = o => JSON.parse(JSON.stringify(o));
+const str = (v, n) => typeof v === "string" ? v.slice(0, n || 3000) : "";
+
+function defaultState() {
+  const items = {};
+  ALL_ITEMS.forEach(i => { items[i.id] = { status: "proposed", owner: i.owner, with: i.with.slice(), note: "" }; });
+  return { v: 4, items, questions: {}, week: { dinners: clone(DEFAULT_DINNERS), items: DEFAULT_WEEK.map(x => Object.assign({ optional: false }, x)) } };
+}
+function mergeState(s, legacy) {
+  const b = defaultState();
+  if (!s || typeof s !== "object") return b;
+  if (s.items && typeof s.items === "object") ALL_ITEMS.forEach(i => {
+    const o = s.items[i.id]; if (!o || typeof o !== "object") return;
+    const t = b.items[i.id];
+    if (STATUSES[o.status]) t.status = o.status;
+    t.note = str(o.note);
+    if (!legacy) {
+      if (OWNERS[o.owner]) t.owner = o.owner;
+      const oldDefault = (s.v || 0) < 4 && i.id === "p2-programming" && o.with && o.with.join() === "aman";
+      if (Array.isArray(o.with) && !oldDefault) t.with = PEOPLE.filter(p => p !== t.owner && o.with.includes(p));
+    }
+  });
+  if (s.questions && typeof s.questions === "object") QUESTIONS.forEach(q => { if (typeof s.questions[q.id] === "string") b.questions[q.id] = str(s.questions[q.id]); });
+  if (!legacy && s.week && typeof s.week === "object") {
+    const d = s.week.dinners || {};
+    if (DAY_IDS.includes(d.boys)) b.week.dinners.boys = d.boys;
+    if (DAY_IDS.includes(d.combined) || d.combined === "none") b.week.dinners.combined = d.combined;
+    if (Array.isArray(s.week.items)) b.week.items = s.week.items
+      .filter(x => x && DAY_IDS.includes(x.day) && TYPES[x.type] && typeof x.title === "string")
+      .map(x => ({ id: str(x.id, 40) || uid(), day: x.day, type: x.type, title: str(x.title, 60), detail: str(x.detail, 400), optional: !!x.optional }));
+  }
+  return b;
+}
+function sGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function sSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function loadState() {
+  try {
+    const cur = sGet(STORE_KEY); if (cur) return mergeState(JSON.parse(cur));
+    const old = sGet(OLD_KEY); if (old) return mergeState(JSON.parse(old), true);
+  } catch (e) {}
+  return defaultState();
+}
+function readHash() { return (window.location.hash || "") === "#approach" ? "approach" : "plan"; }
+
+function dayEntries(week, day) {
+  const out = [];
+  if (week.dinners.boys === day) out.push(Object.assign({ id: "d-boys", type: "group", anchor: true }, DINNERS.boys));
+  if (week.dinners.combined === day) out.push(Object.assign({ id: "d-comb", type: "group", anchor: true }, DINNERS.combined));
+  return out.concat(week.items.filter(i => i.day === day));
+}
+function whoPhrase(o) {
+  if (!o.with.length) return OWNERS[o.owner].label;
+  if (o.with.length === 1 && o.with[0] !== "aman") return OWNERS[o.owner].label + " · working with " + OWNERS[o.with[0]].label;
+  return OWNERS[o.owner].label + " · " + o.with.map(p => OWNERS[p].rel).join("; ");
+}
+
+/* ================= Text export ================= */
+
+function itemLines(st, i, L) {
+  const o = st.items[i.id];
+  L.push("* " + i.title + (i.tag ? " (" + i.tag + ")" : "") + " [" + STATUSES[o.status] + "]");
+  L.push("  Responsibility (proposed): " + whoPhrase(o));
+  i.actions.forEach(a => L.push("  - " + a));
+  if (i.why) L.push("  Why: " + i.why);
+  if (i.needs) L.push("  Needs: " + i.needs);
+  if (i.outcome) L.push("  Outcome: " + i.outcome);
+  if (o.note.trim()) L.push("  NOTE: " + o.note.trim().replace(/\n/g, " "));
+}
+function planText(st) {
+  const L = [];
+  L.push("FOUNDERS SCHOOL | HEAD OF STUDENT LIFE 30/60/90 PLAN");
+  L.push("Exported " + new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }));
+  L.push("All responsibilities are proposed for discussion.");
+  L.push("");
+  const open = ALL_ITEMS.filter(i => ["discuss", "revisit"].includes(st.items[i.id].status));
+  const aligned = ALL_ITEMS.filter(i => st.items[i.id].status === "aligned");
+  if (open.length || aligned.length) {
+    L.push("DECISIONS");
+    aligned.forEach(i => L.push("- Aligned: " + i.title));
+    open.forEach(i => L.push("- " + STATUSES[st.items[i.id].status] + ": " + i.title + (st.items[i.id].note.trim() ? " (" + st.items[i.id].note.trim().replace(/\n/g, " ") + ")" : "")));
+    L.push("");
+  }
+  PHASES.forEach(p => {
+    L.push(p.days.toUpperCase() + ": " + p.name.toUpperCase());
+    L.push("Objective: " + p.objective);
+    p.cards.forEach(c => {
+      if (c.kind === "group") { L.push(""); L.push(c.label + ": " + c.title); c.items.forEach(i => itemLines(st, i, L)); }
+      else itemLines(st, c, L);
+    });
+    L.push("");
+    L.push("Day " + p.end + " outcomes:");
+    p.outcomes.forEach(x => L.push("- " + x));
+    L.push("");
+  });
+  L.push("ALIGNMENT QUESTIONS");
+  QUESTIONS.forEach((q, k) => { L.push((k + 1) + ". " + q.text); const a = (st.questions[q.id] || "").trim(); if (a) L.push("   Notes: " + a.replace(/\n/g, " ")); });
+  L.push("");
+  L.push("EXAMPLE WEEK (established rhythm, not an approved calendar)");
+  DAYS.forEach(([id, name]) => { const e = dayEntries(st.week, id); L.push("- " + name + ": " + (e.length ? e.map(x => x.title + (x.optional ? " (optional)" : "")).join("; ") : "Open")); });
+  L.push("");
+  L.push("APPROACH: FIVE GUIDING BALANCES");
+  BALANCES.forEach(b => L.push("- " + b[0] + " / " + b[1] + ": " + b[2]));
+  L.push("");
+  L.push("RESIDENTIAL EXPERIENCE");
+  FEEL.forEach(f => L.push("- " + f[0] + ": " + f[1]));
+  L.push("");
+  L.push("FOUNDATIONAL RESPONSIBILITIES (DAY 1 ONWARD)");
+  L.push("Existing school rules:"); FOUNDATIONS.rules.forEach(f => L.push("- " + f[0]));
+  L.push("Proposed household practice:"); FOUNDATIONS.practices.forEach(f => L.push("- " + f[0]));
+  L.push("");
+  L.push("MEASURES OF SUCCESS");
+  MEASURES.forEach(m => L.push("- " + m.name + ": " + m.line + " Evaluated through: " + m.how.join(", ") + "."));
+  return L.join("\n");
+}
+
+/* ================= Components ================= */
+
+function Seg({ label, value, options, onChange }) {
+  return html`<div className="ctl"><span className="ctl-label">${label}</span>
+    <div className="seg" role="radiogroup" aria-label=${label}>
+      ${options.map(([v, l]) => html`<button type="button" key=${v} role="radio" aria-checked=${value === v} className=${"sc s-" + v + (value === v ? " on" : "")} onClick=${() => onChange(v)}>${l}</button>`)}
+    </div></div>`;
+}
+function People({ list }) {
+  return html`<span className="people">${list.map(p => html`<span key=${p} className="person"><span className=${"dot d-" + p}></span>${OWNERS[p].label}</span>`)}</span>`;
+}
+
+function Approach() {
+  const [open, setOpen] = useState([]);
+  const toggle = k => setOpen(o => o.includes(k) ? o.filter(x => x !== k) : o.concat(k));
+  return html`<main className="page wrap">
+    <div className="ap-top">
+      <section className="panel" aria-label="Five guiding balances">
+        <div className="panel-head"><span className="label">Five guiding balances</span></div>
+        ${BALANCES.map(b => html`<div key=${b[0]} className="bal">
+          <h3 className="bal-name">${b[0]} <i>↔</i> ${b[1]}</h3>
+          <p>${b[2]}</p>
+        </div>`)}
+      </section>
+      <section className="feel" aria-label="The residential experience">
+        <span className="label">The residential experience</span>
+        ${FEEL.map(f => html`<div key=${f[0]} className="feel-item"><h3>${f[0]}</h3><p>${f[1]}</p></div>`)}
+      </section>
+    </div>
+
+    <section className="panel" aria-label="Foundational responsibilities">
+      <div className="panel-head"><span className="label">Foundational responsibilities · from Day 1 onward</span></div>
+      <div className="found">
+        <div className="found-col">
+          <span className="label"><span className="kind rule">School rules</span>Know and follow the existing rules</span>
+          <ul className="found-list">${FOUNDATIONS.rules.map(f => html`<li key=${f[0]}><b>${f[0]}</b><span>${f[1]}</span></li>`)}</ul>
+        </div>
+        <div className="found-col">
+          <span className="label"><span className="kind prop">Proposed</span>Household routines, within school rules</span>
+          <ul className="found-list">${FOUNDATIONS.practices.map(f => html`<li key=${f[0]}><b>${f[0]}</b><span>${f[1]}</span></li>`)}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section className="measures-wrap" aria-label="Measures of success">
+      <span className="label">Measures of success · feedback and everyday observation</span>
+      <div className="measures">
+        ${MEASURES.map((m, k) => html`<div key=${m.name} className=${"measure" + (open.includes(k) ? " open" : "")}>
+          <button className="measure-btn" aria-expanded=${open.includes(k)} onClick=${() => toggle(k)}>
+            <h3>${m.name}</h3><p>${m.line}</p>
+            <span className="more">${open.includes(k) ? "Hide" : "How it's evaluated"}</span>
+          </button>
+          <div className=${"measure-body" + (open.includes(k) ? "" : " closed")} aria-hidden=${!open.includes(k)}><ul className="dash">${m.how.map(h => html`<li key=${h}>${h}</li>`)}</ul>${m.caveat ? html`<p className="caveat">${m.caveat}</p>` : null}</div>
+        </div>`)}
+      </div>
+    </section>
+  </main>`;
+}
+
+function cardItems(c) { return c.kind === "group" ? c.items : [c]; }
+
+function PhaseCard({ c, on, pick }) {
+  const { st } = useCtx();
+  const items = cardItems(c);
+  const people = PEOPLE.filter(p => items.some(i => st.items[i.id].owner === p || st.items[i.id].with.includes(p)));
+  const statuses = ["aligned", "discuss", "revisit"].map(s => [s, items.filter(i => st.items[i.id].status === s).length]).filter(x => x[1]);
+  const notes = items.filter(i => st.items[i.id].note.trim()).length;
+  return html`<button type="button" className=${"pcard" + (on ? " on" : "")} aria-expanded=${on} aria-controls="detail" onClick=${() => pick(c.id)}>
+    ${c.label || c.tag ? html`<span className="pcard-label">${c.label ? html`<span>${c.label}</span>` : null}${c.tag ? html`<span className="tag">${c.tag}</span>` : null}</span>` : null}
+    <span className="pcard-title">${c.title}</span>
+    <span className="pcard-sum">${c.summary}</span>
+    <span className="pcard-foot">
+      <${People} list=${people} />
+      ${statuses.map(([s, n]) => html`<span key=${s} className=${"st st-" + s}>${(items.length > 1 ? n + " " : "") + STATUSES[s]}</span>`)}
+      ${notes ? html`<span className="has-note">${notes > 1 ? notes + " notes" : "Note"}</span>` : null}
+    </span>
+  </button>`;
+}
+
+function Phase({ p, sel, pick }) {
+  return html`<section className=${"phase " + p.id} style=${{ "--o": p.n * 2 - 1 }} aria-label=${p.days + ", " + p.name}>
+    <div className="phase-head"><span className="days">${p.days}</span><h2>${p.name}</h2><p>${p.objective}</p></div>
+    <div className="phase-body">${p.cards.map(c => html`<${PhaseCard} key=${c.id} c=${c} on=${sel === c.id} pick=${pick} />`)}</div>
+    <div className="outcomes"><span className="label">Day ${p.end} outcomes</span>
+      <ul className="checks">${p.outcomes.map(x => html`<li key=${x}>${x}</li>`)}</ul></div>
+  </section>`;
+}
+
+function ItemDetail({ i, wide }) {
+  const { st, update, discuss } = useCtx();
+  const o = st.items[i.id];
+  const set = fn => update(n => fn(n.items[i.id]));
+  const meta = html`<dl className="dl">
+    <dt>Who</dt><dd>${whoPhrase(o)} <span className="muted">(proposed)</span></dd>
+    ${i.why ? html`<dt>Why</dt><dd>${i.why}</dd>` : null}
+    ${i.needs ? html`<dt>Needs</dt><dd>${i.needs}</dd>` : null}
+    ${i.outcome ? html`<dt>Outcome</dt><dd>${i.outcome}</dd>` : null}
+  </dl>`;
+  const actions = html`<div className="ctl"><span className="ctl-label">Actions</span><ul className="acts">${i.actions.map((a, k) => html`<li key=${k}>${a}</li>`)}</ul></div>`;
+  const note = !discuss && o.note.trim() ? html`<p className="note-view full">${o.note}</p>` : null;
+  const edit = discuss ? html`<div className="edit full">
+    <div className="edit-row">
+      <${Seg} label="Status" value=${o.status} options=${Object.entries(STATUSES)} onChange=${v => set(t => { t.status = v; })} />
+      <${Seg} label="Proposed owner" value=${o.owner} options=${PEOPLE.map(p => [p, OWNERS[p].label])} onChange=${v => set(t => { t.owner = v; t.with = t.with.filter(x => x !== v); })} />
+      <div className="ctl"><span className="ctl-label">Also involves</span>
+        <div className="seg" role="group" aria-label="Also involves">
+          ${PEOPLE.filter(p => p !== o.owner).map(p => html`<button type="button" key=${p} aria-pressed=${o.with.includes(p)} className=${"sc" + (o.with.includes(p) ? " on" : "")} onClick=${() => set(t => { t.with = t.with.includes(p) ? t.with.filter(x => x !== p) : PEOPLE.filter(x => x !== t.owner && (t.with.includes(x) || x === p)); })}>${OWNERS[p].label}</button>`)}
+        </div></div>
+    </div>
+    <div className="ctl"><label className="ctl-label" htmlFor=${"n-" + i.id}>Note</label>
+      <textarea id=${"n-" + i.id} rows="2" placeholder="Short note from discussion" value=${o.note} onChange=${e => { const v = e.target.value; set(t => { t.note = v; }); }}></textarea></div>
+  </div>` : null;
+  if (wide) return html`<div className="sub wide">${actions}<div className="sub">${meta}</div>${note}${edit}</div>`;
+  return html`<div className="sub">
+    <h4 className="sub-title">${i.title}${i.tag ? html`<span className="tag">${i.tag}</span>` : null}${o.status !== "proposed" ? html`<span className=${"st st-" + o.status}>${STATUSES[o.status]}</span>` : null}</h4>
+    ${actions}${meta}${note}${edit}
+  </div>`;
+}
+
+function Detail({ id, close }) {
+  const { st } = useCtx();
+  const ref = useRef(null);
+  const { card: c, phase: p, pi } = CARD_BY[id];
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const r = el.getBoundingClientRect();
+    if (r.top < 70 || r.top > window.innerHeight - 140) {
+      const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      el.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" });
+    }
+  }, [id]);
+  const group = c.kind === "group";
+  const status = !group ? st.items[c.id].status : "proposed";
+  return html`<section id="detail" ref=${ref} className="detail" style=${{ "--mo": pi * 2 + 2 }} aria-label=${c.title + " details"}>
+    <div className="detail-head">
+      <div>
+        <span className="label">${p.days} · ${p.name}${group ? " · " + c.label : ""}</span>
+        <h3>${c.title}${!group && c.tag ? html`<span className="tag">${c.tag}</span>` : null}${status !== "proposed" ? html`<span className=${"st st-" + status}>${STATUSES[status]}</span>` : null}</h3>
+      </div>
+      <button className="btn small" onClick=${close}>Close</button>
+    </div>
+    <div className=${"detail-body" + (group ? " three" : "")}>
+      ${group ? c.items.map(i => html`<${ItemDetail} key=${i.id} i=${i} />`) : html`<${ItemDetail} i=${c} wide=${true} />`}
+    </div>
+  </section>`;
+}
+
+function Week() {
+  const { st, update, discuss } = useCtx();
+  const [day, setDay] = useState("sat");
+  const [confirm, setConfirm] = useState(false);
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState("group");
+  const w = st.week;
+  const entries = dayEntries(w, day);
+  const add = ev => { ev.preventDefault(); const t = title.trim(); if (!t) return; update(n => { n.week.items.push({ id: uid(), day, type, title: t, detail: "", optional: false }); }); setTitle(""); };
+  const setItem = (id, k, v) => update(n => { const it = n.week.items.find(x => x.id === id); if (it) it[k] = v; });
+  return html`<section className="panel" aria-label="Example week">
+    <div className="panel-head">
+      <span className="label">Example week · a possible schedule, not a fixed plan</span>
+      <div className="wk-legend"><span><span className="sq group"></span>Group</span><span><span className="sq individual"></span>Individual</span><span><span className="sq downtime"></span>Downtime and spontaneity</span></div>
+    </div>
+    <div className="week-grid">
+      ${DAYS.map(([id, , short]) => html`<button key=${id} type="button" className=${"day" + (day === id ? " on" : "")} aria-pressed=${day === id} onClick=${() => setDay(id)}>
+        <span className="day-name">${short}</span>
+        ${dayEntries(w, id).map(x => html`<span key=${x.id} className=${"blk " + x.type + (x.anchor ? " anchor" : "")}>${x.title}${x.optional ? html`<span className="opt"> · opt.</span>` : null}</span>`)}
+      </button>`)}
+    </div>
+    <div className="day-detail" aria-live="polite">
+      <div className="dd-head">
+        <h4>${DAY_NAME[day]}</h4>
+        <span className="fine">${WEEKEND.includes(day) ? "Weekend. " : "School ends at 5 p.m. "}Curfew and lights out follow the handbook. Group activities can go ahead with whoever is free.</span>
+      </div>
+      ${discuss ? html`<div className="we-list">
+        <div className="row" style=${{ justifyContent: "space-between" }}>
+          <div className="row">
+            <label className="ctl-label" htmlFor="din-b">Boys' dinner</label>
+            <select id="din-b" value=${w.dinners.boys} onChange=${e => update(n => { n.week.dinners.boys = e.target.value; })}>${DAYS.map(d => html`<option key=${d[0]} value=${d[0]}>${d[1]}</option>`)}</select>
+            <label className="ctl-label" htmlFor="din-c">Combined dinner</label>
+            <select id="din-c" value=${w.dinners.combined} onChange=${e => update(n => { n.week.dinners.combined = e.target.value; })}>${DAYS.map(d => html`<option key=${d[0]} value=${d[0]}>${d[1]}</option>`)}<option value="none">Not set</option></select>
+          </div>
+          ${confirm ? html`<div className="confirm">Restore the original week?<button className="btn small danger" onClick=${() => { update(n => { n.week = defaultState().week; }); setConfirm(false); }}>Reset</button><button className="btn small" onClick=${() => setConfirm(false)}>Cancel</button></div>`
+            : html`<button className="link" onClick=${() => setConfirm(true)}>Reset week</button>`}
+        </div>
+        ${entries.filter(x => x.anchor).map(x => html`<div key=${x.id} className="act-row"><span className=${"sq " + x.type}></span><div><b>${x.title}</b><span className="mini">Move with the dinner selectors</span><p>${x.detail}</p></div></div>`)}
+        ${entries.filter(x => !x.anchor).map(x => html`<div key=${x.id} className="we-item">
+          <div className="we-row">
+            <label className="sr" htmlFor=${"wt-" + x.id}>Short label</label>
+            <input type="text" id=${"wt-" + x.id} maxLength="40" value=${x.title} onChange=${e => setItem(x.id, "title", e.target.value)} />
+            <label className="sr" htmlFor=${"wy-" + x.id}>Type</label>
+            <select id=${"wy-" + x.id} value=${x.type} onChange=${e => setItem(x.id, "type", e.target.value)}>${Object.entries(TYPES).map(([k, v]) => html`<option key=${k} value=${k}>${v}</option>`)}</select>
+            <label className="chk" htmlFor=${"wo-" + x.id}><input type="checkbox" id=${"wo-" + x.id} checked=${!!x.optional} onChange=${e => setItem(x.id, "optional", e.target.checked)} />Optional</label>
+            <button type="button" className="link danger" onClick=${() => update(n => { n.week.items = n.week.items.filter(y => y.id !== x.id); })}>Remove</button>
+          </div>
+          <label className="sr" htmlFor=${"wd-" + x.id}>Detail</label>
+          <input type="text" id=${"wd-" + x.id} placeholder="Detail (optional)" value=${x.detail} onChange=${e => setItem(x.id, "detail", e.target.value)} />
+        </div>`)}
+        <form className="we-row" onSubmit=${add}>
+          <label className="sr" htmlFor="wk-new">New activity</label>
+          <input type="text" id="wk-new" maxLength="40" placeholder=${"Add a short activity to " + DAY_NAME[day]} value=${title} onChange=${e => setTitle(e.target.value)} />
+          <label className="sr" htmlFor="wk-new-type">Type</label>
+          <select id="wk-new-type" value=${type} onChange=${e => setType(e.target.value)}>${Object.entries(TYPES).map(([k, v]) => html`<option key=${k} value=${k}>${v}</option>`)}</select>
+          <button className="btn small" type="submit" disabled=${!title.trim()}>Add</button>
+        </form>
+      </div>` : (entries.length ? html`<div className="acts-grid">${entries.map(x => html`<div key=${x.id} className="act-row">
+          <span className=${"sq " + x.type}></span>
+          <div><b>${x.title}</b>${x.optional ? html`<span className="mini">Optional</span>` : null}${x.anchor ? html`<span className="mini">Weekly anchor</span>` : null}${x.detail ? html`<p>${x.detail}</p>` : null}</div>
+        </div>`)}</div>` : html`<p className="fine">Open evening.</p>`)}
+    </div>
+  </section>`;
+}
+
+function Questions() {
+  const { st, update, discuss } = useCtx();
+  const answered = QUESTIONS.filter(q => (st.questions[q.id] || "").trim()).length;
+  return html`<details className="panel collapse" open=${discuss || undefined}>
+    <summary><span className="label">Questions to discuss · ${QUESTIONS.length}${answered ? " · " + answered + " discussed" : ""}</span><span className="chev"><span className="chev-c">Show</span><span className="chev-o">Hide</span></span></summary>
+    <ol className="qs qs-grid">${QUESTIONS.map((q, k) => {
+      const a = st.questions[q.id] || "";
+      return html`<li key=${q.id}>
+        <span className="q"><span>${k + 1}</span>${q.text}</span>
+        ${discuss ? html`<div><label className="sr" htmlFor=${"q-" + q.id}>Notes for question ${k + 1}</label><textarea id=${"q-" + q.id} rows="1" placeholder="Notes" value=${a} onChange=${e => { const v = e.target.value; update(n => { n.questions[q.id] = v; }); }}></textarea></div>`
+          : (a.trim() ? html`<span className="ans">${a}</span>` : null)}
+      </li>`;
+    })}</ol>
+  </details>`;
+}
+
+function Plan() {
+  const { st, discuss } = useCtx();
+  const [sel, setSel] = useState(null);
+  const pick = id => setSel(cur => cur === id ? null : id);
+  const open = ALL_ITEMS.filter(i => ["discuss", "revisit"].includes(st.items[i.id].status));
+  return html`<main className="page wrap">
+    <div style=${{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      <div className="legend">
+        ${PEOPLE.map(k => html`<span key=${k} className="who"><span className=${"dot d-" + k}></span><span><b>${OWNERS[k].label}</b> · ${OWNERS[k].desc.toLowerCase()}</span></span>`)}
+        <span className="muted">Responsibilities are proposed and can be discussed.</span>
+      </div>
+      ${discuss ? html`<div className="discuss-bar">
+        <span><b>Discuss mode</b> · Select a card to edit its status, responsibility, or notes. Changes stay in this browser.</span>
+        ${open.length ? html`<span className="open-items"><span className="ctl-label">Open</span>${open.map(i => html`<button key=${i.id} className="oi" onClick=${() => setSel(CARD_OF_ITEM[i.id])}><span className=${"st st-" + st.items[i.id].status}>${STATUSES[st.items[i.id].status]}</span>${i.title}</button>`)}</span>` : null}
+      </div>` : null}
+    </div>
+    <div className="rail" aria-hidden="true"><span className="r1"></span><span className="r2"></span><span className="r3"></span></div>
+    <div className="phases">
+      ${PHASES.map(p => html`<${Phase} key=${p.id} p=${p} sel=${sel} pick=${pick} />`)}
+      ${sel && CARD_BY[sel] ? html`<${Detail} key="detail" id=${sel} close=${() => setSel(null)} />` : null}
+    </div>
+    <${Week} />
+    <${Questions} />
+  </main>`;
+}
+
+function ExportDrawer({ close }) {
+  const { st, setAll } = useCtx();
+  const [out, setOut] = useState({ kind: "", text: "" });
+  const [msg, setMsg] = useState({ t: "", err: false });
+  const [imp, setImp] = useState("");
+  const [impMsg, setImpMsg] = useState({ t: "", err: false });
+  const [confirm, setConfirm] = useState(false);
+  const ta = useRef(null);
+  const show = kind => { setOut({ kind, text: kind === "text" ? planText(st) : JSON.stringify({ app: APP_ID, version: 3, exportedAt: new Date().toISOString(), state: st }, null, 2) }); setMsg({ t: "", err: false }); };
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(out.text); setMsg({ t: "Copied.", err: false }); }
+    catch (e) { if (ta.current) { ta.current.focus(); ta.current.select(); } setMsg({ t: "Couldn't copy automatically. The text is selected. Press Ctrl+C or Cmd+C.", err: true }); }
+  };
+  const onFile = ev => {
+    const f = ev.target.files && ev.target.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = () => { setImp(String(r.result || "")); setImpMsg({ t: "File loaded. Select Import.", err: false }); };
+    r.onerror = () => setImpMsg({ t: "File couldn't be read. Paste its contents instead.", err: true });
+    r.readAsText(f);
+  };
+  const doImport = () => {
+    try { const o = JSON.parse(imp); if (!o || o.app !== APP_ID || !o.state) throw new Error("bad"); setAll(mergeState(o.state, (o.version || 0) < 3)); setImp(""); setImpMsg({ t: "Imported into this browser.", err: false }); }
+    catch (e) { setImpMsg({ t: "This doesn't look like exported plan data. Paste the text from Data (JSON).", err: true }); }
+  };
+  return html`<div className="drawer"><div className="drawer-in wrap">
+    <div className="drawer-col">
+      <div className="row" style=${{ justifyContent: "space-between" }}>
+        <div className="row">
+          <button className=${"btn" + (out.kind === "text" ? " primary" : "")} onClick=${() => show("text")}>Plan and notes as text</button>
+          <button className=${"btn" + (out.kind === "json" ? " primary" : "")} onClick=${() => show("json")}>Data (JSON)</button>
+        </div>
+        ${out.kind ? html`<div className="row">${msg.t ? html`<span className=${"msg" + (msg.err ? " err" : "")}>${msg.t}</span>` : null}<button className="btn primary" onClick=${copy}>Copy</button></div>` : null}
+      </div>
+      ${out.kind ? html`<div><label className="sr" htmlFor="out">Export</label><textarea id="out" ref=${ta} className="out" rows="9" readOnly value=${out.text}></textarea></div>`
+        : html`<p className="fine">Changes stay in this browser and aren't shared automatically. To share an updated version, export the data so the other person can import it.</p>`}
+    </div>
+    <div className="drawer-col">
+      <span className="label">Import data</span>
+      <label className="sr" htmlFor="imp">Paste data</label>
+      <textarea id="imp" rows="3" placeholder="Paste exported data here" value=${imp} onChange=${e => setImp(e.target.value)}></textarea>
+      <div className="row"><label className="sr" htmlFor="imp-f">Choose file</label><input type="file" id="imp-f" accept="application/json,.json,.txt" onChange=${onFile} /><button className="btn primary" disabled=${!imp.trim()} onClick=${doImport}>Import</button></div>
+      ${impMsg.t ? html`<span className=${"msg" + (impMsg.err ? " err" : "")}>${impMsg.t}</span>` : null}
+      <div className="row" style=${{ justifyContent: "space-between", marginTop: "4px" }}>
+        ${confirm ? html`<div className="confirm">Clear all edits in this browser?<button className="btn small danger" onClick=${() => { setAll(defaultState()); setConfirm(false); setOut({ kind: "", text: "" }); }}>Reset</button><button className="btn small" onClick=${() => setConfirm(false)}>Cancel</button></div>`
+          : html`<button className="link danger" onClick=${() => setConfirm(true)}>Reset all edits</button>`}
+        <button className="link" onClick=${close}>Close</button>
+      </div>
+    </div>
+  </div></div>`;
+}
+
+function App() {
+  const [st, setSt] = useState(loadState);
+  const [tab, setTab] = useState(readHash);
+  const [discuss, setDiscuss] = useState(false);
+  const [drawer, setDrawer] = useState(false);
+  useEffect(() => { sSet(STORE_KEY, JSON.stringify(st)); }, [st]);
+  useEffect(() => { const f = () => setTab(readHash()); window.addEventListener("hashchange", f); return () => window.removeEventListener("hashchange", f); }, []);
+  const go = t => { setTab(t); try { window.location.hash = t; } catch (e) {} window.scrollTo(0, 0); };
+  const update = fn => setSt(prev => { const n = clone(prev); fn(n); return n; });
+  const ctx = { st, update, setAll: setSt, discuss: discuss && tab === "plan" };
+  return html`<${Ctx.Provider} value=${ctx}>
+    <header className="top"><div className="top-in wrap">
+      <button className="brand" onClick=${() => go("plan")} aria-label="Founders School, 30/60/90 tab">
+        <span className="brand-mark" aria-hidden="true">FS</span>
+        <span className="brand-text"><span className="brand-name">Founders School</span><span className="brand-sub">Head of Student Life · 30/60/90 Plan</span></span>
+      </button>
+      <nav className="tabs" aria-label="Sections">
+        <button className=${"tab" + (tab === "plan" ? " on" : "")} aria-current=${tab === "plan" ? "page" : undefined} onClick=${() => go("plan")}>30 / 60 / 90</button>
+        <button className=${"tab" + (tab === "approach" ? " on" : "")} aria-current=${tab === "approach" ? "page" : undefined} onClick=${() => go("approach")}>Approach</button>
+      </nav>
+      <div className="actions">
+        ${tab === "plan" ? html`<button className=${"btn" + (discuss ? " on" : "")} aria-pressed=${discuss} onClick=${() => setDiscuss(!discuss)}>${discuss ? "Done" : "Discuss"}</button>` : null}
+        <button className=${"btn" + (drawer ? " on" : "")} aria-expanded=${drawer} onClick=${() => setDrawer(!drawer)}>Export</button>
+      </div>
+    </div></header>
+    ${drawer ? html`<${ExportDrawer} close=${() => setDrawer(false)} />` : null}
+    ${tab === "plan" ? html`<${Plan} />` : html`<${Approach} />`}
+  <//>`;
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(html`<${App} />`);
+})();
+</script>
+</body>
+</html>
